@@ -6,9 +6,9 @@ MENU_BOARD = ReplyKeyboardMarkup(
         [
             KeyboardButton(text="Обновить конфиг аномалий"),
         ],
-        # [
-        #     KeyboardButton(text='Список сталкеров'),
-        # ],
+        [
+            KeyboardButton(text='Обновить конфиг трейдер+'),
+        ],
     ],
     resize_keyboard=True
 )

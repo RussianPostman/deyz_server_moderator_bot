@@ -23,6 +23,8 @@ async def add_anomaly_vait_file(
     """
     Хендлер для команды /mode
     """
+
+    await state.clear()
     await state.set_state(AddAnomalyState.vait_file)
     await bot.send_message(
         chat_id=message.from_user.id,

@@ -3,23 +3,23 @@
 """
 import logging
 
-from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.types import BotCommand
-from aioredis import Redis
 from aiogram.fsm.storage.memory import MemoryStorage
 
 from aiogram import Bot, Dispatcher
 
 from moderator_project.adapters.bot.anomaly.router import register_anomaly_config_handler
 from moderator_project.adapters.bot.base.router import register_base_handler
+from moderator_project.adapters.bot.trader_plus.router import register_trader_config_handler
 from moderator_project.aplication.configs.anomaly.service import AnomalyConfigService
+from moderator_project.aplication.configs.trader.service import TraderPlusServise
 
 
 async def starter(
     token: str,
     bot_commands: list[tuple[str]],
     anomaly_ervice: AnomalyConfigService,
-    redis_host: str = None,
+    trader_ervice: TraderPlusServise,
 ):
     logging.basicConfig(level=logging.DEBUG)
 
@@ -33,7 +33,10 @@ async def starter(
 
     register_base_handler(dp)
     register_anomaly_config_handler(dp)
+    register_trader_config_handler(dp)
 
     await bot.set_my_commands(commands=commands_for_bot)
 
-    await dp.start_polling(bot, anomaly_ervice=anomaly_ervice)
+    await dp.start_polling(
+        bot, anomaly_ervice=anomaly_ervice, trader_ervice=trader_ervice,
+    )

@@ -45,7 +45,7 @@ if __name__ == '__main__':
     try:
         asyncio.run(
             starter(
-                '6268111728:AAGePjOYAIW0sYAL06DaLWQ0MV6FaCWBIjo',
+                ...
             )
         )
     except (KeyboardInterrupt,):
