@@ -55,8 +55,12 @@ async def add_trader_return_file(
 
     all_items, venders_category_list = trader_ervice.get_full_conf(df)
 
-    config_json = json.dumps(all_items)
-    venders_category_json = json.dumps(venders_category_list)
+    config_json = json.dumps(all_items, ensure_ascii=False, indent=4)
+    venders_category_json = json.dumps(
+        venders_category_list,
+        ensure_ascii=False,
+        indent=4,
+    )
     date = datetime.now().strftime('%Y-%m-%d--%H-%M')
 
     await message.answer_document(
